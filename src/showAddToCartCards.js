@@ -1,6 +1,9 @@
 import products from "./api/products.json";
 import { fetchQuantityFromCartLS } from "./fetchQuantityFromCartLS";
 import { getCartProductFromLS } from "./getCartProducts";
+import { incrementDecrement } from "./incrementDecrement";
+import { removeProductFromCart } from "./removeProductFromCart";
+
 
 let cartProducts = getCartProductFromLS();
 
@@ -24,6 +27,8 @@ const showCartProduct = () => {
 
     const lSActualData = fetchQuantityFromCartLS(id, price);
 
+  
+
     productClone.querySelector("#cardValue").setAttribute("id", `card${id}`);
     productClone.querySelector(".category").textContent = category;
     productClone.querySelector(".productName").textContent = name;
@@ -33,6 +38,13 @@ const showCartProduct = () => {
       lSActualData.quantity;
     productClone.querySelector(".productPrice").textContent =
       lSActualData.price;
+
+    productClone.querySelector(".stockElement").addEventListener("click", (event) => {
+      incrementDecrement(event, id, stock, price);
+    })
+
+    productClone.querySelector(".remove-to-cart-button").addEventListener("click", () =>
+      removeProductFromCart(id));
 
         cartElement.appendChild(productClone);
     })
