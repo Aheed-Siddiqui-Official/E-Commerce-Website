@@ -1,3 +1,4 @@
+import { showToast } from "./api/showToast";
 import { getCartProductFromLS } from "./getCartProducts";
 import { updateCartValue } from "./updateCartValue";
 
@@ -29,6 +30,8 @@ export const addToCart = (event, id, stock) => {
         console.log(updateCart);
         
         localStorage.setItem("cartProductLS", JSON.stringify(updateCart));
+
+        showToast("add", id);
     }
 
     if(existingProd) {
@@ -44,4 +47,6 @@ export const addToCart = (event, id, stock) => {
     localStorage.setItem("cartProductLS", JSON.stringify(arrLocalStorageProduct));
 
     updateCartValue(arrLocalStorageProduct);
+
+    showToast("add", id);
 }
