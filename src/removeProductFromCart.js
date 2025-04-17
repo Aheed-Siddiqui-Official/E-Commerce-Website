@@ -1,5 +1,6 @@
 import { showToast } from "./api/showToast";
 import { getCartProductFromLS } from "./getCartProducts";
+import { updateCartProductTotal } from "./updateCartProductTotal";
 import { updateCartValue } from "./updateCartValue";
 
 export const removeProductFromCart = (id) => {
@@ -16,4 +17,5 @@ export const removeProductFromCart = (id) => {
     }
 
     updateCartValue(cartProducts);
+    updateCartProductTotal();
 }
